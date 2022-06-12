@@ -4,14 +4,20 @@
   "description": "A challenge for Full Stack Developer job",
   "main": "index.js",
   "type": "module",
-
   "scripts": {
     "test": "npx jest",
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "nicolaslima321",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1"
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.20.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "sequelize-cli": "^6.4.1"
   }
 }
