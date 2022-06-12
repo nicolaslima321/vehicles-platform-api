@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "A challenge for Full Stack Developer job",
   "main": "index.js",
+  "type": "module",
+
   "scripts": {
     "test": "npx jest",
     "start": "node index.js"
