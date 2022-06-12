@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import databaseInstance from '/config/database.js';
 
-export default databaseInstance.define("company", {
+const companyModel = databaseInstance.define("company", {
   id: {
     type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -33,3 +33,9 @@ export default databaseInstance.define("company", {
     unique: false,
   },
 }, { tableName: 'company' });
+
+companyModel.associate = function(models) {
+  companyModel.belongsTo(models.driver, { foreignKey: 'id' });
+}
+
+export default companyModel;

@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import databaseInstance from '/config/database.js';
 
-export default databaseInstance.define("driver", {
+const dirverModel = databaseInstance.define("driver", {
   id: {
     type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -11,6 +11,11 @@ export default databaseInstance.define("driver", {
   companyId: {
     type: Sequelize.INTEGER.UNSIGNED,
     allowNull: false,
+    references: {
+      model: 'company',
+      key: 'ID'
+    },
+    field: 'company_id',
   },
   city: {
     type: Sequelize.INTEGER.UNSIGNED,
@@ -47,3 +52,10 @@ export default databaseInstance.define("driver", {
     unique: false,
   },
 }, { tableName: 'driver' });
+
+dirverModel.associate = function(models) {
+  dirverModel.belongsTo(models.vehicle, { foreignKey: 'id' });
+  dirverModel.hasMany(models.company, { foreignKey: 'id', sourceKey: 'companyId' });
+}
+
+export default dirverModel;

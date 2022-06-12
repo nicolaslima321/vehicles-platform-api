@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import databaseInstance from '/config/database.js';
 
-export default databaseInstance.define("vehicle", {
+const vehicleModel = databaseInstance.define("vehicle", {
   id: {
     type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -11,6 +11,11 @@ export default databaseInstance.define("vehicle", {
   driverId: {
     type: Sequelize.INTEGER.UNSIGNED,
     allowNull: false,
+    references: {
+      model: 'driver',
+      key: 'ID'
+    },
+    field: 'driver_id',
   },
   plate: {
     type: Sequelize.STRING,
@@ -38,3 +43,10 @@ export default databaseInstance.define("vehicle", {
     unique: false,
   },
 }, { tableName: 'vehicle' });
+
+
+vehicleModel.associate = function(models) {
+  vehicleModel.hasOne(models.driver, { foreignKey: 'id', sourceKey: 'driverId' });
+}
+
+export default vehicleModel;
