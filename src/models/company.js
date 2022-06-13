@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import databaseInstance from '/config/database.js';
+import databaseInstance from '../../config/database.js';
 
 // import DriverModel from './driver.js';
 
