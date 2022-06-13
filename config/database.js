@@ -10,6 +10,8 @@ const dbConfigs = {
   define: {
     timestamps: false,
     underscored: true,
+    freezeTableName: true,
+    modelName: 'singularName',
   },
   dialect: dbType,
   host: dbHost,

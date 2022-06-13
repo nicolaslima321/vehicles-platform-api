@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
 import databaseInstance from '/config/database.js';
 
+// import DriverModel from './driver.js';
+
 const companyModel = databaseInstance.define("company", {
   id: {
     type: Sequelize.INTEGER.UNSIGNED,
@@ -34,8 +36,10 @@ const companyModel = databaseInstance.define("company", {
   },
 }, { tableName: 'company' });
 
-companyModel.associate = function(models) {
-  companyModel.belongsTo(models.driver, { foreignKey: 'id' });
+companyModel.associate = function(driverModel) {
+  companyModel.belongsTo(driverModel, { foreignKey: 'id' });
 }
+
+// companyModel.belongsTo(DriverModel);
 
 export default companyModel;

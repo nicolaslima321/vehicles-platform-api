@@ -13,7 +13,7 @@ const vehicleModel = databaseInstance.define("vehicle", {
     allowNull: false,
     references: {
       model: 'driver',
-      key: 'ID'
+      key: 'id'
     },
     field: 'driver_id',
   },
@@ -45,8 +45,10 @@ const vehicleModel = databaseInstance.define("vehicle", {
 }, { tableName: 'vehicle' });
 
 
-vehicleModel.associate = function(models) {
-  vehicleModel.hasOne(models.driver, { foreignKey: 'id', sourceKey: 'driverId' });
+vehicleModel.associate = function(driverModel) {
+  vehicleModel.hasMany(driverModel, { as: 'driver', foreignKey: 'id', sourceKey: 'driverId' });
 }
+
+// vehicleModel.hasMany(DriverModel);
 
 export default vehicleModel;

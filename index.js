@@ -1,10 +1,14 @@
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv/config.js';
 import databaseInstance from './config/database.js';
 
 import router from './src/router.js';
 
 const app = express()
+
+app.use(cors())
+
 const port = 8080;
 
 databaseInstance.authenticate()

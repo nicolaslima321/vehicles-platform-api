@@ -6,11 +6,12 @@
   "type": "module",
   "scripts": {
     "test": "npx jest",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "nicolaslima321",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mysql2": "^2.3.3",

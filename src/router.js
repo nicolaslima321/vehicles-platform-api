@@ -10,11 +10,15 @@ router.get('/', function(request, response){
   response.json({ message: "API index route"})
 })
 
-router.get('/api/company', CompanyController.index);
-
 router.get('/api/driver', DriverController.index);
 
 router.get('/api/vehicle', VehicleController.index);
+router.get('/api/vehicle/:id', VehicleController.show);
 router.post('/api/vehicle', VehicleController.create);
+router.patch('/api/vehicle/:id', VehicleController.update);
+router.delete('/api/vehicle/:id', VehicleController.delete);
+
+router.get('/api/company', CompanyController.index);
+
 
 export default router;

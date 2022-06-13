@@ -1,7 +1,10 @@
 import { Sequelize } from 'sequelize';
 import databaseInstance from '/config/database.js';
 
-const dirverModel = databaseInstance.define("driver", {
+import CompanyModel from './company.js';
+import VehicleModel from './vehicle.js';
+
+const driverModel = databaseInstance.define("driver", {
   id: {
     type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -13,7 +16,7 @@ const dirverModel = databaseInstance.define("driver", {
     allowNull: false,
     references: {
       model: 'company',
-      key: 'ID'
+      key: 'id'
     },
     field: 'company_id',
   },
@@ -53,9 +56,14 @@ const dirverModel = databaseInstance.define("driver", {
   },
 }, { tableName: 'driver' });
 
-dirverModel.associate = function(models) {
-  dirverModel.belongsTo(models.vehicle, { foreignKey: 'id' });
-  dirverModel.hasMany(models.company, { foreignKey: 'id', sourceKey: 'companyId' });
+driverModel.associate = function() {
+  driverModel.belongsTo(VehicleModel, { foreignKey: 'id' });
+  driverModel.hasMany(CompanyModel, { foreignKey: 'id', sourceKey: 'companyId' });
+
+  VehicleModel.associate(driverModel);
+  CompanyModel.associate(driverModel);
 }
 
-export default dirverModel;
+driverModel.associate();
+
+export default driverModel;
