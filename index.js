@@ -9,7 +9,7 @@ const app = express()
 
 app.use(cors())
 
-const port = 4444;
+const port = process.env.PORT ?? 8080;
 
 databaseInstance.authenticate()
   .then(() => {
