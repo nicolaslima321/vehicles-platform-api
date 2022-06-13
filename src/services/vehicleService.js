@@ -78,7 +78,7 @@ export default {
   find(id) {
     return VehicleRepository.findOne({
       where: { id },
-      include: [{ model: DriverRepository }],
+      include: [{ as: 'driver', model: DriverRepository }],
     });
   },
 

@@ -7,7 +7,6 @@ export default {
     try {
       const { ...filterOptions } = req.query;
       const vehicles = await VehicleService.fetchAll(filterOptions);
-      console.log(vehicles);
       return res.json(vehicles)
     } catch (error) {
       console.error('[VehicleController] Could not fetch vehicles from database', error);
