@@ -9,7 +9,7 @@ const app = express()
 
 app.use(cors())
 
-const port = 8080;
+const port = 4444;
 
 databaseInstance.authenticate()
   .then(() => {
@@ -23,6 +23,4 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(router);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(port);
